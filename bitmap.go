@@ -19,16 +19,6 @@ func New() (m *BitMap) {
 	return m
 }
 
-func (b *BitMap) GetAllSetBits(needSort bool) (allSetBits []int) {
-	for i, _ := range b.allSetBits {
-		allSetBits = append(allSetBits, i)
-	}
-	if needSort {
-		sort.Ints(allSetBits)
-	}
-	return allSetBits
-}
-
 func (b *BitMap) Set(offset int) *BitMap {
 	b.allBits.SetBit(&b.allBits, offset, 1)
 	b.allSetBits[offset] = true
@@ -39,6 +29,39 @@ func (b *BitMap) Clear(offset int) *BitMap {
 	b.allBits.SetBit(&b.allBits, offset, 0)
 	delete(b.allSetBits, offset)
 	return b
+}
+
+func (b *BitMap) Test(offset int) bool {
+	return b.allBits.Bit(offset) == 1
+}
+
+func (b *BitMap) BitLen() int {
+	return b.allBits.BitLen()
+}
+
+func (b *BitMap) IsEmpty() bool {
+	return b.allBits.BitLen() == 0
+}
+
+func (b *BitMap) Flip(offset int) *BitMap {
+	if !b.Test(offset) {
+		return b.Set(offset)
+	}
+	return b.Clear(offset)
+}
+
+func (b BitMap) String() string {
+	return fmt.Sprintf("%b", &b.allBits)
+}
+
+func (b *BitMap) GetAllSetBits(needSort bool) (allSetBits []int) {
+	for i, _ := range b.allSetBits {
+		allSetBits = append(allSetBits, i)
+	}
+	if needSort {
+		sort.Ints(allSetBits)
+	}
+	return allSetBits
 }
 
 func (x *BitMap) And(y *BitMap) (z *BitMap) {
@@ -67,29 +90,6 @@ func (x *BitMap) AndNot(y *BitMap) (z *BitMap) {
 	z.allBits.AndNot(&x.allBits, &y.allBits)
 	z.allSetBits.andNot(&x.allSetBits, &y.allSetBits)
 	return
-}
-
-func (b *BitMap) Test(offset int) bool {
-	return b.allBits.Bit(offset) == 1
-}
-
-func (b *BitMap) BitLen() int {
-	return b.allBits.BitLen()
-}
-
-func (b *BitMap) IsEmpty() bool {
-	return b.allBits.BitLen() == 0
-}
-
-func (b *BitMap) Flip(offset int) *BitMap {
-	if !b.Test(offset) {
-		return b.Set(offset)
-	}
-	return b.Clear(offset)
-}
-
-func (b BitMap) String() string {
-	return fmt.Sprintf("%b", &b.allBits)
 }
 
 //find out the same mapkey from x and y
