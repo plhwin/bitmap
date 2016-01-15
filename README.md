@@ -1,9 +1,10 @@
-# bitmap
-Yes! It's Go/Golang's bitmap(bitset) function!
+# Golang bitmap
 
-This function is achieved by the official package: "math/big" (big.Int).
+Yes! it's Go/Golang's bitmap(bitset) function.
 
-It's high efficiency and easy to use.
+this function is achieved by the official package: "math/big" (big.Int).
+
+it's high efficiency and easy to use.
 
 
 ## Install
@@ -71,12 +72,12 @@ let's see the output:
 
 	x: 1010001011 [0 1 3 7 9]
 
-please from right to left to see the bitmap `1010001011`, so you can find the corresponding relation between the offset slice `[0 1 3 7 9]` and bitmap `1010001011`,I told you to avoid your strange.
+please from right to left to see the bitmap `1010001011`, you can find out the corresponding relation between the offset slice `[0 1 3 7 9]` and bitmap `1010001011`, I told you to avoid your strange.
 
 
 ##Others
-based on official package "math/big" (big.Int) implementation,the length of the bitmap that can be stored depends on the size of your memory. [more about "math/big"](https://golang.org/pkg/math/big/)
+based on official package "math/big" (big.Int), the length of the bitmap that can be stored depends on the size of your memory. [more about "math/big"](https://golang.org/pkg/math/big/)
 
-when the bitmap's length exceeds 10 billion, the performance is beginning to decline,combined with the most of business scene,I think this package can be up to more than 99% of the product scene.
+when the bitmap's length exceeds 10 billion, the performance is beginning to decline, combined with practice, I think this function can be competent most of the business scene.
 
-if you have any problems, please submit issues here, I'll promptly pay attention and reply, thanks
+if you have any problems, please submit issues here, thanks.
