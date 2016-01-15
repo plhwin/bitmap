@@ -41,31 +41,31 @@ func (b *BitMap) Clear(offset int) *BitMap {
 	return b
 }
 
-func (b1 *BitMap) And(b2 *BitMap) (b3 *BitMap) {
-	b3 = New()
-	b3.allBits.And(&b1.allBits, &b2.allBits)
-	b3.allSetBits.and(&b1.allSetBits, &b2.allSetBits)
+func (x *BitMap) And(y *BitMap) (z *BitMap) {
+	z = New()
+	z.allBits.And(&x.allBits, &y.allBits)
+	z.allSetBits.and(&x.allSetBits, &y.allSetBits)
 	return
 }
 
-func (b1 *BitMap) Or(b2 *BitMap) (b3 *BitMap) {
-	b3 = New()
-	b3.allBits.Or(&b1.allBits, &b2.allBits)
-	b3.allSetBits.or(&b1.allSetBits, &b2.allSetBits)
+func (x *BitMap) Or(y *BitMap) (z *BitMap) {
+	z = New()
+	z.allBits.Or(&x.allBits, &y.allBits)
+	z.allSetBits.or(&x.allSetBits, &y.allSetBits)
 	return
 }
 
-func (b1 *BitMap) Xor(b2 *BitMap) (b3 *BitMap) {
-	b3 = New()
-	b3.allBits.Xor(&b1.allBits, &b2.allBits)
-	b3.allSetBits.xor(&b1.allSetBits, &b2.allSetBits)
+func (x *BitMap) Xor(y *BitMap) (z *BitMap) {
+	z = New()
+	z.allBits.Xor(&x.allBits, &y.allBits)
+	z.allSetBits.xor(&x.allSetBits, &y.allSetBits)
 	return
 }
 
-func (b1 *BitMap) AndNot(b2 *BitMap) (b3 *BitMap) {
-	b3 = New()
-	b3.allBits.AndNot(&b1.allBits, &b2.allBits)
-	b3.allSetBits.andNot(&b1.allSetBits, &b2.allSetBits)
+func (x *BitMap) AndNot(y *BitMap) (z *BitMap) {
+	z = New()
+	z.allBits.AndNot(&x.allBits, &y.allBits)
+	z.allSetBits.andNot(&x.allSetBits, &y.allSetBits)
 	return
 }
 
@@ -99,6 +99,7 @@ func (z *setBits) and(x, y *setBits) {
 			(*z)[offset] = true
 		}
 	}
+	return
 }
 
 //remove the same mapkey from x and y
@@ -107,17 +108,20 @@ func (z *setBits) or(x, y *setBits) {
 		(*z)[offset] = true
 	}
 	setMap(x, y, z)
+	return
 }
 
 //find out the different mapkey from (x and y)+(y and x)
 func (z *setBits) xor(x, y *setBits) {
 	setMap(x, y, z)
 	setMap(y, x, z)
+	return
 }
 
 // find out the different mapkey from (x and y)
 func (z *setBits) andNot(x, y *setBits) {
 	setMap(x, y, z)
+	return
 }
 
 // set mapkey for pointer z
@@ -127,4 +131,5 @@ func setMap(x, y, z *setBits) {
 			(*z)[offset] = true
 		}
 	}
+	return
 }
