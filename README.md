@@ -66,7 +66,7 @@ code output:
 	if offset 5 in x? false
 
 
-##Tips:
+##Tips
 
 let's see the output:
 
