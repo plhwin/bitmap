@@ -7,11 +7,11 @@ It's high efficiency and easy to use.
 
 
 ## Install
+
 	go get github.com/plhwin/bitmap
 
-
-
 ## Example
+
 	package main
 
 	import (
@@ -52,7 +52,7 @@ It's high efficiency and easy to use.
 		fmt.Println("if offset 5 in x?", x.Test(5)) //false, Because we run the code 'x.Clear(5)' above.
 	}
 
-all the output is:
+code output:
 
 	x: 1010001011 [0 1 3 7 9]
 	y: 1101110100 [2 4 5 6 8 9]
@@ -67,21 +67,16 @@ all the output is:
 
 ##Tips:
 
-let's see a new bitmap:
+let's see the output:
 
-	a := bitmap.New().Set(0).Set(1).Set(3).Set(5).Set(7).Set(9)
-	fmt.Println("a:", a, a.GetAllSetBits(true))
+	x: 1010001011 [0 1 3 7 9]
 
-
-it will be out put:
-
-	1000100000 [5 9]
-
-please from right to left to count the offset in the bitmap,so the offset slice is [5 9]
-please from right to left, so you can find the corresponding relation between the offset slice `[5 9]` and bitmap `1000100000`,but this is not important, I told you to avoid your strange.
+please from right to left, so you can find the corresponding relation between the offset slice `[0 1 3 7 9]` and bitmap `1010001011`,I told you to avoid your strange.
 
 
 ##Others
-based on official package "math/big" (big.Int) implementation,the length of the bitmap that can be stored depends on the size of your memory.
+based on official package "math/big" (big.Int) implementation,the length of the bitmap that can be stored depends on the size of your memory. [more about "math/big"](https://golang.org/pkg/math/big/)
 
-when the bitmap's length exceeds 10 billion, the performance is beginning to decline,so it can be applied to more than 99% of the business scene
+when the bitmap's length exceeds 10 billion, the performance is beginning to decline,combined with the most of business scene,I think this package can be up to more than 99% of the product scene.
+
+if you have any problems, please submit issues here, I'll promptly pay attention and reply, thanks
