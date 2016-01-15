@@ -82,4 +82,4 @@ when the bitmap's length exceeds 10 billion, the performance is beginning to dec
 
 if you have any problems, please submit issues here, thanks.
 
-###喜欢请点star，订阅请点watch，创建自己的版本那就fork吧！
+#####喜欢请点star，订阅请点watch，创建自己的版本那就fork吧！如果想要羞辱我...那只能Follow Me了。
