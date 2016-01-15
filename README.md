@@ -71,7 +71,7 @@ let's see the output:
 
 	x: 1010001011 [0 1 3 7 9]
 
-please from right to left, so you can find the corresponding relation between the offset slice `[0 1 3 7 9]` and bitmap `1010001011`,I told you to avoid your strange.
+please from right to left to see the bitmap `1010001011`, so you can find the corresponding relation between the offset slice `[0 1 3 7 9]` and bitmap `1010001011`,I told you to avoid your strange.
 
 
 ##Others
