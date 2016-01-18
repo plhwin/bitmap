@@ -1,6 +1,6 @@
 # Golang bitmap
 
-Yes! it's Go/Golang's bitmap(bitset) function.
+it's Go/Golang's bitmap(bitset) function.
 
 this function is achieved by the official package: "math/big" (big.Int).
 
@@ -13,45 +13,47 @@ it's high efficiency and easy to use.
 
 ## Example
 
-	package main
+```go
+package main
 
-	import (
-		"fmt"
-		"github.com/plhwin/bitmap"
-	)
+import (
+	"fmt"
+	"github.com/plhwin/bitmap"
+)
 
-	func main() {
-		x := bitmap.New().Set(0).Set(1).Set(3).Set(5).Set(7).Set(9)
-		y := bitmap.New().Set(2).Set(4).Set(5).Set(6).Set(8)
-		z := bitmap.New() // z is a new empty bitmap
+func main() {
+	x := bitmap.New().Set(0).Set(1).Set(3).Set(5).Set(7).Set(9)
+	y := bitmap.New().Set(2).Set(4).Set(5).Set(6).Set(8)
+	z := bitmap.New() // z is a new empty bitmap
 
-		// remove offset 5 from x, now x's offset is [0 1 3 7 9], bitmap is 1010001011
-		x.Clear(5)
+	// remove offset 5 from x, now x's offset is [0 1 3 7 9], bitmap is 1010001011
+	x.Clear(5)
 
-		// set new offset to y agin, now y's offset is [2 4 5 6 8 9], bitmap is 1101110100
-		y.Set(9)
+	// set new offset to y agin, now y's offset is [2 4 5 6 8 9], bitmap is 1101110100
+	y.Set(9)
 
-		//find out the same bitset from x and y
-		and := x.And(y)
-		// remove the same bitset from x and y
-		or := x.Or(y)
-		// find out the different bitset from (x and y)+(y and x)
-		xor := x.Xor(y)
-		// find out the different bitset from (x and y)
-		andnot := x.AndNot(y)
+	//find out the same bitset from x and y
+	and := x.And(y)
+	// remove the same bitset from x and y
+	or := x.Or(y)
+	// find out the different bitset from (x and y)+(y and x)
+	xor := x.Xor(y)
+	// find out the different bitset from (x and y)
+	andnot := x.AndNot(y)
 
-		fmt.Println("x:", x, x.GetAllSetBits(true)) // if false, it will be return a random slice
-		fmt.Println("y:", y, y.GetAllSetBits(true))
-		fmt.Println("z:", z, z.GetAllSetBits(true), z.BitLen(), z.IsEmpty()) // this bitmap's len is 0, and z.IsEmpty() is true
-		fmt.Println("and:", and, and.GetAllSetBits(true))
-		fmt.Println("or:", or, or.GetAllSetBits(true))
-		fmt.Println("xor:", xor, xor.GetAllSetBits(true))
-		fmt.Println("andnot:", andnot, andnot.GetAllSetBits(true))
-		
-		// here if you want to check a offset in x, you can do it like this:
-		fmt.Println("if offset 0 in x?", x.Test(0)) //true
-		fmt.Println("if offset 5 in x?", x.Test(5)) //false, Because we run the code 'x.Clear(5)' above.
-	}
+	fmt.Println("x:", x, x.GetAllSetBits(true)) // if false, it will be return a random slice
+	fmt.Println("y:", y, y.GetAllSetBits(true))
+	fmt.Println("z:", z, z.GetAllSetBits(true), z.BitLen(), z.IsEmpty()) // this bitmap's len is 0, and z.IsEmpty() is true
+	fmt.Println("and:", and, and.GetAllSetBits(true))
+	fmt.Println("or:", or, or.GetAllSetBits(true))
+	fmt.Println("xor:", xor, xor.GetAllSetBits(true))
+	fmt.Println("andnot:", andnot, andnot.GetAllSetBits(true))
+	
+	// here if you want to check a offset in x, you can do it like this:
+	fmt.Println("if offset 0 in x?", x.Test(0)) //true
+	fmt.Println("if offset 5 in x?", x.Test(5)) //false, Because we run the code 'x.Clear(5)' above.
+}
+```
 
 code output:
 
