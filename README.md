@@ -73,8 +73,8 @@ please from right to left to see the bitmap `1010001011`, you can find out the c
 
 
 ##Others
-based on official package "math/big" (big.Int), the length of the bitmap that can be stored depends on the size of your memory. [more about "math/big"](https://golang.org/pkg/math/big/)
+based on official package "math/big" (big.Int), the length of the bitmap that can be stored depends on the size of your memory. [more about "math/big"](https://golang.org/pkg/math/big/).
 
-when the bitmap's length exceeds 10 billion, the performance is beginning to decline, combined with practice, I think this function can be competent most of the business scene.
+when the bitmap's length exceeds 10 billion, the performance begin to degradation, combined with the actual production environment, I think that 10 billion has been long enough, in most cases it is sufficient to use.
 
 if you have any problems, please submit issues here, thanks.
